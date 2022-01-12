@@ -4,10 +4,13 @@ var gamePattern = []
 var userClickedPattern = []
 
 $('.btn').click(function () {
+
     var userChosenColour = $(this).attr('id')
     userClickedPattern.push(userChosenColour)
 
     playsound(userChosenColour)
+
+    animatePress(userChosenColour)
 })
 
 function nextSequence() {
@@ -24,4 +27,12 @@ function nextSequence() {
 function playsound(name) {
     var audio = new Audio('sounds/' + name + '.mp3')
     audio.play()
+}
+
+function animatePress(currentColor) {
+    $('#' + currentColor).addClass('pressed')
+
+    setTimeout(function () {
+        $('#' + currentColor).removeClass('pressed')
+    }, 100)
 }
